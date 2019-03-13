@@ -7,7 +7,9 @@ asyncAnswers = {
    * @returns {then: function} A promise like object containing a then property.
    */
   async: function async(value) {
-
+    var dfd = $.Deferred();
+    dfd.resolve(value);
+    return dfd.promise();
   },
 
   /**
@@ -21,6 +23,16 @@ asyncAnswers = {
    * @returns {then: function} A promise like object containing a then property.
    */
   manipulateRemoteData: function manipulateRemoteData(url) {
+    var dfd = $.Deferred();
 
+    $.getJSON(url).then(function (data) {
+      var names = $.map(data.people, function (person) {
+        return person.name;
+      });
+
+      dfd.resolve(names.sort());
+    });
+
+    return dfd.promise();
   },
 };
