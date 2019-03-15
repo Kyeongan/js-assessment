@@ -18,8 +18,8 @@ arraysAnswers = {
    * @returns {Number} The numerical sum of all items in arr.
    */
   sum: function sum(arr) {
-    const add = (a, b) => a + b;
-    const sum = arr.reduce(add);
+    const adder = (a, b) => a + b;
+    const sum = arr.reduce(adder);
     return sum;
   },
 
